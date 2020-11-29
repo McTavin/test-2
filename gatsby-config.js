@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -30,7 +32,7 @@ module.exports = {
     {
       resolve: `gatsby-source-airtable`,
       options: {
-        apiKey: `keylydEhkp4Xf2ZL0`, // may instead specify via env, see below
+        apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
         concurrency: 5, // default, see using markdown and attachments for more information
         tables: [
           {
