@@ -3,6 +3,16 @@ import { graphql } from 'gatsby'
 import markdown from 'remark-parse';
 import unified from 'unified';
 
+
+
+var html = require('rehype-stringify')
+var remark2rehype = require('remark-rehype')
+
+var processor = unified()
+  .use(markdown)
+  .use(remark2rehype)
+  .use(html)
+
 export default ({ data }) => {
 
     return (
@@ -12,7 +22,7 @@ export default ({ data }) => {
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ 
-            __html: unified() .use(markdown) .processSync(data.airtable.data.PostMarkdown) }}
+            __html: processor() .processSync(data.airtable.data.PostMarkdown) }}
         >
       </div>
     </div>
